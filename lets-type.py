@@ -1,12 +1,30 @@
+import sys
 import requests
 import random
 import time
 from colorama import Fore, Style
+import asyncio
 
+global x
+x = 10
+
+async def print_progress_bar():
+    iteration, total, bar_length=1, 30, 50
+    while(x!=0):
+        progress = (iteration / total)
+        arrow = '=' * int(round(bar_length * progress))
+        spaces = ' ' * (bar_length - len(arrow))
+        sys.stdout.write(f"\r[{arrow + spaces}] {int(progress * 100)}%")
+        sys.stdout.flush()
+        if progress>=1:
+            raise Exception('Timed out')
+        iteration+=1
+        time.sleep(1)
+        total-=1
 
 def get_fresh_quote():
     result = ''
-    for _ in range(2):
+    for _ in range(1):
         quotable_api_url = "https://api.quotable.io/random" # Don't Abuse the apis :)
         response = requests.get(quotable_api_url)
         if response.status_code == 200:
@@ -33,6 +51,8 @@ def play_typing_game():
     print( "Type this: ",Fore.GREEN +prompt, "")
     reset_color()
     input("Press ENTER when you are ready!")
+    x=0
+    res = asyncio.run(print_progress_bar())
     start_time = time.time()
     user_input = input()
     end_time = time.time()
