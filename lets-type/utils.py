@@ -16,7 +16,7 @@ def get_logger():
 
 
 # TODO: make async
-def get_fresh_quote(quotes: int):
+async def get_fresh_quote(quotes: int):
     result = ""
     for _ in range(quotes):
         quotable_api_url = "https://api.quotable.io/random"  # Don't Abuse the apis :)
