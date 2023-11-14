@@ -1,2 +1,3 @@
 testenv/
 __pycache__/
+*.log
