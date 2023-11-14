@@ -1,4 +1,4 @@
-![LOGO](https://github.com/namansharma18899/lets-type/tree/master/assets/logo.svg)
+![LOGO](https://github.com/namansharma18899/lets-type/blob/master/assets/logo.svg)
 ## Overview
 
 Welcome to Let's Type, a sleek and efficient terminal-based typing speed calculator built with Python. Elevate your typing skills and track your progress with this interactive and user-friendly tool.
