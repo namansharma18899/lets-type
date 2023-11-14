@@ -6,21 +6,22 @@ from utils import wrap_text, get_fresh_quote, get_logger
 
 logger = get_logger()
 
+
 def main(stdscr):
     def play(stdscr):
         original_text = "This is a temprary text written from scratch for all of you."
         input_text = ""
         cursor_position = 0
         wrong = []
-        logger.info(" hellooo ")
         # --------------------------------------------------------------------
         curses.curs_set(1)  # Set the cursor to be visible
         stdscr.clear()
         curses.start_color()
-        curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)  # Header color
-        curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)  # Footer color
-        curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)  # Middle portion color
-        curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)  # Boundary color
+        curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
+        curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
+        curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
+        curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+        curses.init_pair(5, curses.COLOR_GREEN, curses.COLOR_BLACK)
 
         height, width = stdscr.getmaxyx()
         header_height = 1
@@ -41,7 +42,7 @@ def main(stdscr):
             height - footer_height,
             0,
             wrap_text(footer_text),
-            curses.color_pair(2) | curses.A_BOLD,
+            curses.color_pair(5) | curses.A_BOLD,
         )
         stdscr.hline(  # Yellow boundary line
             height - footer_height - 1, 0, curses.ACS_HLINE, width, curses.color_pair(4)
@@ -68,7 +69,7 @@ def main(stdscr):
                 window_height - footer_height,
                 0,
                 wrap_text(footer_text),
-                curses.color_pair(2) | curses.A_BOLD,
+                curses.color_pair(5) | curses.A_BOLD,
             )
             stdscr.hline(  # Yellow boundary line
                 window_height - footer_height - 1,
@@ -113,52 +114,36 @@ def main(stdscr):
                 break
         time_diff = (time.time() - start_time) / 60
         logger.info(f"time diff -> {time_diff} text len {len(original_text)}")
-        report_text = "You had a typing speed of "
+        report_text = "Report"
         stdscr.addstr(
-            middle_y + 10,
-            0,
-            report_text,
-            curses.color_pair(3),
-        )
-        stdscr.addstr(
-            middle_y + 10,
+            middle_y + 12,
             len(report_text) + 1,
-            f"{int(len(input_text.split(' ')))/time_diff} WPM",
+            f"Speed: {int(len(input_text.split(' ')))/time_diff:.2f} WPM",
             curses.color_pair(1),
         )
+        stdscr.addstr(
+            middle_y + 13,
+            len(report_text) + 1,
+            f"Accuracy: {(len(set(original_text.split()).symmetric_difference(set(input_text.split())))//2 * 100)/ len(original_text.split()):.2f} WPM",
+            curses.color_pair(1),
+        )
+        stdscr.addstr(
+            middle_y + 15,
+            len(report_text) + 1,
+            f"Press 'q' to Quit and 'r' to Replay",
+            curses.color_pair(4),
+        )
+
     while True:
         play(stdscr)
         key = stdscr.getch()  # Get Current Character Input
-        if chr(key) == 'q':
+        if chr(key) == "q":
             break
-        elif chr(key)== 'r':
+        elif chr(key) == "r":
             continue
         else:
             break
     curses.endwin()
-
-    # elif key == curses.KEY_BACKSPACE or key == 127:
-    #     if cursor_position > 0:
-    #         input_text = input_text[:cursor_position - 1] + input_text[cursor_position:]
-    #         stdscr.addstr(1, cursor_position, chr(key), curses.color_pair(2))
-    #         stdscr.move(1, cursor_position)
-    #         stdscr.refresh()
-    #         cursor_position -= 1
-    # else:
-    #     if cursor_position < len(original_text) and chr(key) == original_text[cursor_position]:
-    #         input_text = input_text[:cursor_position] + chr(key) + input_text[cursor_position:]
-    #         stdscr.addstr(1, cursor_position, chr(key), curses.color_pair(2))
-    #         cursor_position += 1
-    #         stdscr.move(1, cursor_position)
-    #         stdscr.refresh()
-    #     else:
-    #         input_text = input_text[:cursor_position] + chr(key) + input_text[cursor_position:]
-    #         stdscr.addstr(1, cursor_position, chr(key), curses.color_pair(1))
-    #         cursor_position += 1
-    #         stdscr.move(1, cursor_position)
-    #         stdscr.refresh()
-
-    # End curses
 
 
 if __name__ == "__main__":
