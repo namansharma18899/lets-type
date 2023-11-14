@@ -1,15 +1,9 @@
 import curses
-import logging
 import time
-from utils import wrap_text, get_fresh_quote
+from utils import wrap_text, get_fresh_quote, get_logger
 
 
-Log_Format = "%(levelname)s %(asctime)s - %(message)s"
-logging.basicConfig(
-    filename="logfile.log", filemode="w", format=Log_Format, level=logging.INFO
-)
-logger = logging.getLogger()
-
+logger = get_logger()
 
 def main(stdscr):
     original_text = get_fresh_quote(2)
@@ -163,4 +157,4 @@ if __name__ == "__main__":
     try:
         curses.wrapper(main)
     except KeyboardInterrupt as ke:
-        print('Gracefully Exiting')
+        print("Gracefully Exiting")

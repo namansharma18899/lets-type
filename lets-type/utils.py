@@ -1,11 +1,21 @@
 import requests
+import logging
 
 
 def wrap_text(text):
-    return f' {text} '
+    return f" {text} "
 
 
-#TODO: make async
+def get_logger():
+    Log_Format = "%(levelname)s %(asctime)s - %(message)s"
+    logging.basicConfig(
+        filename="logfile.log", filemode="w", format=Log_Format, level=logging.INFO
+    )
+    logger = logging.getLogger()
+    return logger
+
+
+# TODO: make async
 def get_fresh_quote(quotes: int):
     result = ""
     for _ in range(quotes):
@@ -26,4 +36,4 @@ def get_fresh_quote(quotes: int):
             raise Exception(
                 "Could not fetch your typing data !! Sorry for the inconvenience"
             )
-    return result[: len(result) - 1] #removes last space
+    return result[: len(result) - 1]  # removes last space
