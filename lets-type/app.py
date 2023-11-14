@@ -16,6 +16,7 @@ class LetsType:
         curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)  # Header color
         curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_GREEN)  # Footer color
         curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)  # Middle portion color
+        curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK) # Boundary color
 
         height, width = stdscr.getmaxyx()
 
@@ -27,12 +28,18 @@ class LetsType:
         header_text = "Header"
         stdscr.addstr(0, 0, header_text, curses.color_pair(1) | curses.A_BOLD)
 
+        # Yellow boundary line
+        stdscr.hline(header_height, 0, curses.ACS_HLINE, width, curses.color_pair(4))
+
         # Footer
         footer_text = "Footer - Press 'q' to exit"
         stdscr.addstr(height - footer_height, 0, footer_text, curses.color_pair(2) | curses.A_BOLD)
 
+        # Yellow boundary line
+        stdscr.hline(height - footer_height - 1, 0, curses.ACS_HLINE, width, curses.color_pair(4))
+
         # Middle portion with active cursor
-        middle_y = header_height
+        middle_y = header_height + 1
         middle_x = 0
         input_text = ""
 
@@ -43,8 +50,14 @@ class LetsType:
             # Header
             stdscr.addstr(0, 0, header_text, curses.color_pair(1) | curses.A_BOLD)
 
+            # Yellow boundary line
+            stdscr.hline(header_height, 0, curses.ACS_HLINE, width, curses.color_pair(4))
+
             # Footer
             stdscr.addstr(height - footer_height, 0, footer_text, curses.color_pair(2) | curses.A_BOLD)
+
+            # Yellow boundary line
+            stdscr.hline(height - footer_height - 1, 0, curses.ACS_HLINE, width, curses.color_pair(4))
 
             # Middle portion
             stdscr.addstr(middle_y, middle_x, input_text, curses.color_pair(3) | curses.A_BOLD)
@@ -63,5 +76,7 @@ class LetsType:
             elif key == curses.KEY_BACKSPACE:
                 input_text = input_text[:-1]
             elif key >= 32 and key < 127:
-                input_text += chr(key)
+                    input_text += chr(key)
+
+
 obj = LetsType()
