@@ -112,13 +112,13 @@ def main(stdscr):
             cursor_position += 1
             if key == 10:  # Enter key to Exit
                 break
-        time_diff = (time.time() - start_time) / 60
-        logger.info(f"time diff -> {time_diff} text len {len(original_text)}")
+        elapsed_time = (time.time() - start_time) / 60
+        logger.info(f"time diff -> {elapsed_time} text len {len(original_text)}")
         report_text = "Report"
         stdscr.addstr(
             middle_y + 12,
             len(report_text) + 1,
-            f"Speed: {int(len(input_text.split(' ')))/time_diff:.2f} WPM",
+            f"Speed: {int(len(input_text.split(' ')))/elapsed_time:.2f} WPM",
             curses.color_pair(1),
         )
         stdscr.addstr(
