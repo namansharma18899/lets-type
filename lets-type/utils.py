@@ -5,6 +5,7 @@ def wrap_text(text):
     return f' {text} '
 
 
+#TODO: make async
 def get_fresh_quote(quotes: int):
     result = ""
     for _ in range(quotes):
