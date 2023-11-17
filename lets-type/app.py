@@ -9,11 +9,11 @@ logger = get_logger()
 
 def main(stdscr):
     def play(stdscr):
-        original_text = "This is a temprary text written from scratch for all of you."
+        original_text = get_fresh_quote(2)
         input_text = ""
         cursor_position = 0
         wrong = []
-        # --------------------------------------------------------------------
+        #<---------------------------------------->Setup Window var---------------------------------------->
         curses.curs_set(1)  # Set the cursor to be visible
         stdscr.clear()
         curses.start_color()
@@ -23,37 +23,18 @@ def main(stdscr):
         curses.init_pair(4, curses.COLOR_YELLOW, curses.COLOR_BLACK)
         curses.init_pair(5, curses.COLOR_GREEN, curses.COLOR_BLACK)
 
-        height, width = stdscr.getmaxyx()
+        window_height, window_width = stdscr.getmaxyx()
         header_height = 1
         footer_height = 1
-        middle_height = height - header_height - footer_height
         header_text = "Lets Type"  # Header
-        stdscr.addstr(
-            0,
-            int((width - len(header_text)) // 2),
-            wrap_text(header_text),
-            curses.color_pair(1) | curses.A_BOLD,
-        )
-        stdscr.hline(
-            header_height, 0, curses.ACS_HLINE, width, curses.color_pair(4)
-        )  # Yellow boundary line
         footer_text = "Press 'q' to exit & 'r' to replay"  # Footer
-        stdscr.addstr(
-            height - footer_height,
-            0,
-            wrap_text(footer_text),
-            curses.color_pair(5) | curses.A_BOLD,
-        )
-        stdscr.hline(  # Yellow boundary line
-            height - footer_height - 1, 0, curses.ACS_HLINE, width, curses.color_pair(4)
-        )
+        middle_height = window_height - header_height - footer_height
         middle_y = header_height + 1  # Middle portion with active cursor
         middle_x = 0
         input_text = ""
-        window_height, window_width = height, width
         start_time = time.time()
 
-        while True:
+        while True: # Event Loop
             stdscr.clear()
             stdscr.bkgd(curses.color_pair(3))
             stdscr.addstr(
@@ -78,8 +59,6 @@ def main(stdscr):
                 window_width,
                 curses.color_pair(4),
             )
-            # original_text = asyncio.run(get_fresh_quote(2))
-
             stdscr.addstr(middle_y, middle_x, original_text)
             for posi in range(cursor_position):
                 if posi in wrong:
@@ -95,7 +74,11 @@ def main(stdscr):
                 input_text,
                 curses.color_pair(3),
             )
-            stdscr.move(middle_y, cursor_position)
+            try:
+                stdscr.move(middle_y, cursor_position)
+            except Exception as e:
+                logger.info(f'window spec {window_height}, {window_width} \
+                            {middle_y}, {cursor_position}')
             stdscr.refresh()
             if cursor_position >= len(original_text):
                 break
@@ -109,9 +92,15 @@ def main(stdscr):
             logger.debug(
                 f"Key -> {chr(key)} | cursorpis -> {cursor_position} | inpt-> {input_text} | org -> {original_text[cursor_position]}"
             )
-            cursor_position += 1
+            # if int((cursor_position+1)/window_width)>0:
+            #     cursor_position = int((cursor_position+1)%window_width)
+            #     middle_y+=1
+            # else:
+            #     cursor_position+=1
+            cursor_position+=1
             if key == 10:  # Enter key to Exit
                 break
+        logger.info(f'wrong -> {wrong}, input -> {len(input_text)}')
         elapsed_time = (time.time() - start_time) / 60
         logger.info(f"time diff -> {elapsed_time} text len {len(original_text)}")
         report_text = "Report"
@@ -124,7 +113,8 @@ def main(stdscr):
         stdscr.addstr(
             middle_y + 13,
             len(report_text) + 1,
-            f"Accuracy: {(len(set(original_text.split()).symmetric_difference(set(input_text.split())))//2 * 100)/ len(original_text.split()):.2f} WPM",
+            f"Accuracy: {int(((len(input_text) - len(wrong))* 100 )/len(input_text))}% WPM",
+            # f"Accuracy: {(len(set(original_text.split()).symmetric_difference(set(input_text.split())))//2 * 100)/ len(original_text.split()):.2f} WPM",
             curses.color_pair(1),
         )
         stdscr.addstr(
@@ -151,3 +141,35 @@ if __name__ == "__main__":
         curses.wrapper(main)
     except KeyboardInterrupt as ke:
         print("Gracefully Exiting")
+
+
+class TypeRacer:
+    def __init__(self) -> None:
+        pass
+
+
+class LetsType:
+    def __init__(self, stdscr) -> None:
+        pass
+
+    def setup(self):
+        # setup_window()
+        # wait for text to proceed or used cached one incase InternetError
+        # Play
+        # Show stats
+        pass
+
+    def teardown(self):
+        pass
+
+    def setup_window(self):
+        pass
+
+    def pull_text(self):
+        pass
+
+    def play(self):
+        pass
+
+    def show_stats(self):
+        pass

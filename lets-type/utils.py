@@ -16,7 +16,7 @@ def get_logger():
 
 
 # TODO: make async
-async def get_fresh_quote(quotes: int):
+def get_fresh_quote(quotes: int, return_dict={}):
     result = ""
     for _ in range(quotes):
         quotable_api_url = "https://api.quotable.io/random"  # Don't Abuse the apis :)
@@ -36,4 +36,5 @@ async def get_fresh_quote(quotes: int):
             raise Exception(
                 "Could not fetch your typing data !! Sorry for the inconvenience"
             )
+    return_dict[quotes] = result[: len(result) - 1]
     return result[: len(result) - 1]  # removes last space
