@@ -3,7 +3,7 @@
 Welcome to Let's Type, a sleek and efficient terminal-based typing speed calculator built with Python. Elevate your typing skills and track your progress with this interactive and user-friendly tool.
 
 <p align="center">
-<img src="assets/demo.gif">
+<img src="assets/new2.gif">
 </p>
 
 ## Table on Contents
