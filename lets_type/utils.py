@@ -1,3 +1,4 @@
+import random
 import requests
 import logging
 
@@ -40,3 +41,18 @@ def get_fresh_quote(quotes: int, return_dict={}):
             )
     return_dict[quotes] = result[: len(result) - 1]
     return result[: len(result) - 1]  # removes last space
+
+
+def get_speed_emoticons(speed, accuracy):
+    if accuracy<=60:
+        return f'Whats less, Vitamin D in your body or your accuracy while typing !!'
+    if speed in range(40):
+        return random.choice(['🫠', '😶', '🤥', '🫥','😐','😑'])+' '+\
+            random.choice(['Long way to go pal !!','Ruko beta abhi bohat kuch seekhna hai jeevan me', 'Is your keyboard on a coffee break, or is it just afraid of getting carpal tunnel from your slow typing speed?'])
+    elif speed in range(41, 61):
+        return  random.choice(['☕', '👔', '🥱', '😴','🌝','🧐'])+' '+'Basic Mitch !!'
+    elif speed in range(61, 80):
+        return random.choice(['🥵', '😎', '🤓', '😏','😉','🦸'])+' '+'Faster than your average Joe !!'
+    elif speed>=80:
+        return f'Hey King you dropped this 👑'
+

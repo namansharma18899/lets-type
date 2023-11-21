@@ -3,7 +3,7 @@ import asyncio
 import time
 from typing import Any
 
-from lets_type.utils import wrap_text, get_fresh_quote, get_logger
+from lets_type.utils import wrap_text, get_fresh_quote, get_logger, get_speed_emoticons
 
 logger = get_logger()
 
@@ -91,7 +91,7 @@ def main(stdscr):
             if KEY == curses.KEY_RESIZE:
                 window_height, window_width = stdscr.getmaxyx()
                 stdscr.clear()
-                logger.info(f'Terminal resized to {window_height}x {window_width}')
+                logger.info(f"Terminal resized to {window_height}x {window_width}")
                 # stdscr.addstr(0, 0, f"Terminal resized to {height}x{width}")
                 stdscr.refresh()
                 # handle_resize(stdscr)
@@ -116,22 +116,29 @@ def main(stdscr):
         logger.info(f"wrong -> {wrong}, input -> {len(input_text)}")
         elapsed_time = (time.time() - start_time) / 60
         logger.info(f"time diff -> {elapsed_time} text len {len(original_text)}")
-        report_text = "Report"
+        speed_wpm = round(int(len(input_text.split(' '))) / round(elapsed_time, 2), 2)
+        accuracy = int(((len(input_text) - len(wrong)) * 100) / len(input_text))
         stdscr.addstr(
             middle_y + 12,
-            len(report_text) + 1,
-            f"Speed: {int(len(input_text.split(' '))) / elapsed_time:.2f} WPM",
+            7,
+            f"Speed: {speed_wpm} WPM",
             curses.color_pair(1),
         )
         stdscr.addstr(
             middle_y + 13,
-            len(report_text) + 1,
-            f"Accuracy: {int(((len(input_text) - len(wrong)) * 100) / len(input_text))}% WPM",
+            7,
+            f"Accuracy: {accuracy} %",
             curses.color_pair(1),
         )
         stdscr.addstr(
             middle_y + 15,
-            len(report_text) + 1,
+            7,
+            get_speed_emoticons(int(speed_wpm), accuracy),
+            curses.color_pair(3),
+        )
+        stdscr.addstr(
+            middle_y + 17,
+            7,
             f"Press 'q' to Quit and 'r' to Replay",
             curses.color_pair(4),
         )
@@ -192,18 +199,15 @@ class LetsType:
         self.wrong_inputs = []
         self.cursor_position = 0
         self.org_word_mtd = {
-            'cursor_position': [0, 0],  # x,y
-            'word': get_fresh_quote(2),
+            "cursor_position": [0, 0],  # x,y
+            "word": get_fresh_quote(2),
         }
-        self.input_word_mtd = {
-            'cursor_position': [0, 10],  # x,y
-            'word': ''
-        }
+        self.input_word_mtd = {"cursor_position": [0, 10], "word": ""}  # x,y
         self.session = {
-            'start_time': None,
-            'end_time': None,
-            'accuracy': None,
-            'speed': None,
+            "start_time": None,
+            "end_time": None,
+            "accuracy": None,
+            "speed": None,
         }
 
     def __setup_window(self):
