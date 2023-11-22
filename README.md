@@ -2,6 +2,11 @@
 <img src="assets/logo.svg" width=300px height=150px>
 <hr>
 ✨ Performant, reliable & classy Typing Speed app. ✨
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namansharma18899/lets-type/blob/main/LICENSE)
+[![GitHub forks](https://img.shields.io/github/forks/namansharma18899/lets-type)](https://github.com/namansharma18899/lets-type/network)
+[![GitHub issues](https://img.shields.io/github/issues/namansharma18899/lets-type)](https://github.com/namansharma18899/lets-type/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/namansharma18899/lets-type)](https://github.com/namansharma18899/lets-type/commits/main)
+[![GitHub stars](https://img.shields.io/github/stars/namansharma18899/lets-type)](https://github.com/namansharma18899/lets-type/stargazers)
 <hr>
 <img src="assets/new2.gif" height=400px>
 </div>
