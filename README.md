@@ -1,18 +1,24 @@
-![LOGO](https://github.com/namansharma18899/lets-type/blob/master/assets/logo.svg)
-## Overview
+<div align='center'>
+<img src="assets/logo.svg" width=300px height=150px>
+<!-- ![LOGO](https://github.com/namansharma18899/lets-type/blob/master/assets/logo.svg) -->
+<hr>
+### **✨ Performant, classy typing speed app. ✨**
+<hr>
+<img src="assets/new2.gif" width=300px height=150px>
+</div>
+
+---
+## 🌎 Overview
 Welcome to Let's Type, a sleek and efficient terminal-based typing speed calculator built with Python. Elevate your typing skills and track your progress with this interactive and user-friendly tool.
 
-<p align="center">
-<img src="assets/new2.gif">
-</p>
-
+<!--
 ## Table on Contents
 - [Features](#features)
 - [Why](#why)
 - [Setup](#setup)
-- [Support](#support)
+- [Support](#support) -->
 
-## Features
+## 🫧 Features
 - **Terminal Magic**: Let's Type brings typing speed evaluation right to your terminal, creating a seamless and distraction-free environment for users.
 
 - **Python Power**: Developed entirely in Python, Let's Type is not just a typing speed calculator; it's a testament to the versatility and elegance of Python programming.
@@ -23,14 +29,14 @@ Welcome to Let's Type, a sleek and efficient terminal-based typing speed calcula
 
 - **Progress Tracking**: Let's Type doesn't just measure your current speed—it helps you track your progress over time. Review your past performance and witness your improvement as you continue practicing.
 
-## Why
-- Inspired by MonkeyType :)
+## 🤨 Why
+- Inspired by MonkeyType : )
 
-## Setup
-```sh
+## ⚙️ Setup
+```bash
 $ cd lets-type/
 $ pip3 install -r requirements.txt
-$ python3 lets-type/app.py 
+$ python3 lets-type/app.py
 ```
-## Support
-- Make sure to leave a **Star** if you like this project. 
+## 🤗 Support
+- Make sure to leave a ⭐ if you like this project.
