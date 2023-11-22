@@ -10,12 +10,12 @@
 ## 🌎 Overview
 Welcome to Let's Type, a sleek and efficient terminal-based typing speed calculator built with Python. Elevate your typing skills and track your progress with this interactive and user-friendly tool.
 
-
+<!-- 
 ## Table on Contents
-- [🫧  Features](#features)
-- [🤨 Why](#why)
-- [⚙️ Setup](#setup)
-- [🤗 Support](#support)
+- 🫧 [ Features](#features)
+- 🤨 [Why](#why)
+- ⚙️ [Setup](#setup)
+- 🤗 [Support](#support) -->
 
 ## 🫧 Features
 - **Terminal Magic**: Let's Type brings typing speed evaluation right to your terminal, creating a seamless and distraction-free environment for users.
