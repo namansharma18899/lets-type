@@ -47,7 +47,8 @@ Welcome to Let's Type, a sleek and efficient terminal-based typing speed calcula
 ```bash
 $ cd lets-type/
 $ pip3 install -r requirements.txt
-$ python3 lets-type/app.py
+$ export PYTHONPATH=`pwd`
+$ python3 -m lets-type
 ```
 ## 🤗 Support
 - Make sure to leave a ⭐ if you like this project.
