@@ -30,7 +30,9 @@ def main(stdscr):
         curses.init_pair(5, curses.COLOR_GREEN, curses.COLOR_BLACK)
         input_text = ""
         header_text = "Lets Type"  # Header
-        footer_text = "Press 'q' to exit & 'r' to replay"  # Footer
+        footer_text = (
+            "powered by Python🐍  "   #"Press 'q' to exit & 'r' to replay"  # Foote
+        )
         start_time = time.time()
         header_height = 1
         footer_height = 1
@@ -92,7 +94,6 @@ def main(stdscr):
                 window_height, window_width = stdscr.getmaxyx()
                 stdscr.clear()
                 logger.info(f"Terminal resized to {window_height}x {window_width}")
-                # stdscr.addstr(0, 0, f"Terminal resized to {height}x{width}")
                 stdscr.refresh()
                 # handle_resize(stdscr)
                 continue
@@ -116,7 +117,7 @@ def main(stdscr):
         logger.info(f"wrong -> {wrong}, input -> {len(input_text)}")
         elapsed_time = (time.time() - start_time) / 60
         logger.info(f"time diff -> {elapsed_time} text len {len(original_text)}")
-        speed_wpm = round(int(len(input_text.split(' '))) / round(elapsed_time, 2), 2)
+        speed_wpm = round(int(len(input_text.split(" "))) / round(elapsed_time, 2), 2)
         accuracy = int(((len(input_text) - len(wrong)) * 100) / len(input_text))
         stdscr.addstr(
             middle_y + 12,
@@ -127,17 +128,23 @@ def main(stdscr):
         stdscr.addstr(
             middle_y + 13,
             7,
-            f"Accuracy: {accuracy} %",
+            f"Accuracy: {accuracy}%",
             curses.color_pair(1),
         )
         stdscr.addstr(
-            middle_y + 15,
+            middle_y + 14,
+            7,
+            f"Time: {round(elapsed_time, 2)} sec",
+            curses.color_pair(1),
+        )
+        stdscr.addstr(
+            middle_y + 17,
             7,
             get_speed_emoticons(int(speed_wpm), accuracy),
             curses.color_pair(3),
         )
         stdscr.addstr(
-            middle_y + 17,
+            middle_y + 19,
             7,
             f"Press 'q' to Quit and 'r' to Replay",
             curses.color_pair(4),
