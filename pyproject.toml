@@ -9,6 +9,10 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+dependencies = [
+'requests==2.31.0',
+'colorama==0.4.6'
+]
 
 [project.urls]
 Home = "https://github.com/namansharma18899/lets-type"
