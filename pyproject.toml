@@ -10,8 +10,11 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = [
-'requests==2.31.0',
-'colorama==0.4.6'
+]
+
+[project.metadata]
+require-dist =  [ 
+'requests',
 ]
 
 [project.urls]
