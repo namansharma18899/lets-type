@@ -2,3 +2,4 @@ testenv/
 __pycache__/
 *.log
 .idea/
+.env
