@@ -1,21 +1,35 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+# [build-system]
+# requires = ["flit_core >=3.2,<4"]
+# build-backend = "flit_core.buildapi"
 
-[project]
+# [project]
+# name = "lets_type"
+# authors = [{name = "Naman Sharma", email = "namansharma18899@gmail.com"}]
+# readme = "README.md"
+# license = {file = "LICENSE"}
+# classifiers = ["License :: OSI Approved :: MIT License"]
+# dynamic = ["version", "description"]
+# dependencies = [
+# ]
+
+# [project.metadata]
+# require-dist =  [ 
+# 'requests',
+# ]
+
+# [project.urls]
+# Home = "https://github.com/namansharma18899/lets-type"
+
+
+[tool.poetry]
 name = "lets_type"
-authors = [{name = "Naman Sharma", email = "namansharma18899@gmail.com"}]
-readme = "README.md"
-license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
-dynamic = ["version", "description"]
-dependencies = [
-]
+version = "1.0.7"
+description = "A small, cool & performant typing app"
+authors = ["Naman Sharma"]
 
-[project.metadata]
-require-dist =  [ 
-'requests',
-]
+[tool.poetry.dependencies]
+python = "*"
 
-[project.urls]
-Home = "https://github.com/namansharma18899/lets-type"
+[tool.poetry.dev-dependencies]
+# pytest = "^3.4"
+requests = "^2.31.0"

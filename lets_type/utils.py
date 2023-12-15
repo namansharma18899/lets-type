@@ -1,6 +1,9 @@
+import json
 import random
-import requests
 import logging
+import urllib3 
+
+http = urllib3.PoolManager()
 
 
 def wrap_text(text):
@@ -22,18 +25,19 @@ def get_logger():
 def get_fresh_quote(quotes: int, return_dict={}):
     result = ""
     for _ in range(quotes):
-        quotable_api_url = "https://api.quotable.io/random"  # Don't Abuse the apis :)
         try:
-            response = requests.get(quotable_api_url)
+            response = http.request("GET",
+                                    "https://api.quotable.io/random")
         except ConnectionError as cer:
             raise cer
         except Exception as e:
             raise Exception(
                 "Could not fetch your typing data !! Sorry for the inconvenience"
             )
-        if response.status_code == 200:
-            data = response.json()
-            quote = data["content"]
+        if response.status == 200:
+            arr = response.data.decode("utf-8").split('\n')
+            for o in arr:
+                quote = json.loads(o)['content']
             result += quote + " "
         else:
             raise Exception(
