@@ -1,11 +1,6 @@
 import curses
-import asyncio
 import time
-from typing import Any
-
-from lets_type.utils import wrap_text, get_fresh_quote, get_logger, get_speed_emoticons
-
-logger = get_logger()
+from lets_type.utils import wrap_text, get_fresh_quote, get_speed_emoticons
 
 
 def main(stdscr):
@@ -31,7 +26,7 @@ def main(stdscr):
         input_text = ""
         header_text = "Lets Type"  # Header
         footer_text = (
-            "powered by Python🐍  "   #"Press 'q' to exit & 'r' to replay"  # Foote
+            "Author: Naman Sharma "   #"Press 'q' to exit & 'r' to replay"  # Foote
         )
         start_time = time.time()
         header_height = 1
@@ -82,10 +77,7 @@ def main(stdscr):
             try:
                 stdscr.move(middle_y, cursor_position)
             except Exception as e:
-                logger.info(
-                    f"window spec {window_height}, {window_width} \
-                            {middle_y}, {cursor_position}"
-                )
+                pass
             stdscr.refresh()
             if len(input_text) >= len(original_text):
                 break
@@ -93,7 +85,6 @@ def main(stdscr):
             if KEY == curses.KEY_RESIZE:
                 window_height, window_width = stdscr.getmaxyx()
                 stdscr.clear()
-                logger.info(f"Terminal resized to {window_height}x {window_width}")
                 stdscr.refresh()
                 # handle_resize(stdscr)
                 continue
@@ -103,10 +94,6 @@ def main(stdscr):
                     wrong.append(cursor_position)
             except IndexError as ie:
                 break
-            logger.debug(
-                f"Key -> {chr(KEY)} | cursorpis -> {cursor_position} | \
-                inpt-> {input_text} | org -> {original_text[cursor_position]}"
-            )
             if int((cursor_position + 1) / window_width) > 0:
                 cursor_position = int((cursor_position + 1) % window_width)
                 middle_y += 1
@@ -114,9 +101,7 @@ def main(stdscr):
                 cursor_position += 1
             if KEY == 10:  # Enter key to Exit
                 break
-        logger.info(f"wrong -> {wrong}, input -> {len(input_text)}")
         elapsed_time = (time.time() - start_time) / 60
-        logger.info(f"time diff -> {elapsed_time} text len {len(original_text)}")
         speed_wpm = round(int(len(input_text.split(" "))) / round(elapsed_time, 2), 2)
         accuracy = int(((len(input_text) - len(wrong)) * 100) / len(input_text))
         stdscr.addstr(
