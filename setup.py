@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='lets_type',
-    version='1.0.12',
+    version='1.0.19',
     author='Naman Sharma',
     author_email='namansharma18899@gmail.com',
     description='A small, cool & performant typing app.',
