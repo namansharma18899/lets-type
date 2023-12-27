@@ -59,6 +59,7 @@ def main(stdscr):
                 window_width,
                 curses.color_pair(4),
             )
+            original_text = original_text if len(original_text)<window_width else original_text[:window_width-3]
             stdscr.addstr(middle_y, middle_x, original_text)
             for posi in range(cursor_position):
                 if posi in wrong:
@@ -134,15 +135,12 @@ def main(stdscr):
             f"Press 'q' to Quit and 'r' to Replay",
             curses.color_pair(4),
         )
-
     while True:
         play(stdscr)
         key = stdscr.getch()  # Get Current Character Input
+        while(key not in ['q', 'r']):
+            key = stdscr.getch()  # Get Current Character Input
         if chr(key) == "q":
-            break
-        elif chr(key) == "r":
-            continue
-        else:
             break
     curses.endwin()
 
