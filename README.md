@@ -1,5 +1,5 @@
 <div align='center'>
-<img src="assets/logo.svg"  height=250px>
+<img  src="https://github.com/namansharma18899/lets-type/blob/master/assets/logo.svg"  height=250px>
 <hr>
 
 ### **✨ Performant, reliable & classy Typing Speed app. ✨**
