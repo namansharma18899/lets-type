@@ -26,8 +26,7 @@ def get_fresh_quote(quotes: int, return_dict={}):
     result = ""
     for _ in range(quotes):
         try:
-            response = http.request("GET",
-                                    "https://api.quotable.io/random")
+            response = http.request("GET","http://api.quotable.io/random")
         except ConnectionError as cer:
             raise cer
         except Exception as e:
