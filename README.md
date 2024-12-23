@@ -14,7 +14,7 @@
 ---
 
 <!-- <img src="assets/new2.gif" height=400px> -->
-<a href="https://asciinema.org/a/lfN6S96DFs5KrkA6nhkrqp8jZ" target="_blank"><img src="https://asciinema.org/a/lfN6S96DFs5KrkA6nhkrqp8jZ.svg" /></a>
+<script src="https://asciinema.org/a/lfN6S96DFs5KrkA6nhkrqp8jZ.js" id="asciicast-lfN6S96DFs5KrkA6nhkrqp8jZ" async="true"></script>
 
 </div>
 
